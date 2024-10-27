@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Secure Your Account</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+</head>
+
+<body>
+    <div class="logo">
+        <img src="https://shib-idp.tufts.edu/shibboleth/images/logo.png" alt="Tufts University">
+    </div>
+    <div class="signup-box">
+        <h1>Secure Your Account</h1>
+        <h4>Choose one of the following:</h4>
+        <form>
+            <label>
+              <input type="radio" name="options" value="option1"> Scan Your Face
+            </label><br>
+            <label>
+              <input type="radio" name="options" value="option2"> Upload a Photo
+            </label><br>
+            <label>
+              <input type="radio" name="options" value="option3"> Answer Security Questions
+            </label><br>
+            <button type="button" onclick="submitForm()" class="button">Submit</button>
+          </form>
+
+          <script>
+            function submitForm() {
+              const options = document.getElementsByName("options");
+              let selectedValue;
+            
+              // Loop through the radio options to find the checked one
+              for (const option of options) {
+                if (option.checked) {
+                  selectedValue = option.value;
+                  break;
+                }
+              }
+            
+              // Redirect based on the selected value
+              switch (selectedValue) {
+                case "option1":
+                  window.location.href = "https://example.com/page1";
+                  break;
+                case "option2":
+                  window.location.href = "https://example.com/page2";
+                  break;
+                case "option3":
+                  window.location.href = "https://example.com/page3";
+                  break;
+                default:
+                  alert("Please select an option before submitting.");
+              }
+            }
+            </script>
+          
+        <br><br><br>
+        <div class="opt-out">
+            <a href="end.html">I want to opt out of this study</a>
+        </div>
+    </div>
+    <br>
+    <div class="logo2">
+        Powered by <img src="https://shib-idp.tufts.edu/shibboleth/images/shib_logo.png" alt="Shibboleth">
+    </div>
+    
+    
+</body>
+</html>
