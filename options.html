@@ -49,6 +49,8 @@
 }
 
 function submitForm() {
+    event.preventDefault();
+    
     const options = document.getElementsByName("options");
     let selectedValue;
 
