@@ -29,48 +29,53 @@
           </form>
 
           <script>
-            function selectOption(label) {
-            // Get all label elements
-                const labels = document.querySelectorAll('label.radiolbl');
+         function selectOption(label) {
+    // Get all label elements
+    const labels = document.querySelectorAll('label.radiolbl');
     
-                // Remove the selected class from all labels
-                labels.forEach((lbl) => {
-                    lbl.classList.remove('selected');
-                });
+    // Remove the selected class from all labels
+    labels.forEach((lbl) => {
+        lbl.classList.remove('selected');
+    });
 
-        // Add the selected class to the clicked label
-                label.classList.add('selected');
-            }
+    // Add the selected class to the clicked label
+    label.classList.add('selected');
 
+    // Check the corresponding radio input
+    const radioInput = label.querySelector('input[type="radio"]');
+    if (radioInput) {
+        radioInput.checked = true; // Set the radio button to checked
+    }
+}
 
+function submitForm() {
+    const options = document.getElementsByName("options");
+    let selectedValue;
 
-            function submitForm() {
-              const options = document.getElementsByName("options");
-              let selectedValue;
-            
-              // Loop through the radio options to find the checked one
-              for (const option of options) {
-                if (option.checked) {
-                  selectedValue = option.value;
-                  break;
-                }
-              }
-            
-              // Redirect based on the selected value
-              switch (selectedValue) {
-                case "option1":
-                  window.location.href = "facescan.html";
-                  break;
-                case "option2":
-                  window.location.href = "selfie.html";
-                  break;
-                case "option3":
-                  window.location.href = "questions.html";
-                  break;
-                default:
-                  alert("Please select an option before submitting.");
-              }
-            }
+    // Loop through the radio options to find the checked one
+    for (const option of options) {
+        if (option.checked) {
+            selectedValue = option.value;
+            break;
+        }
+    }
+
+    // Redirect based on the selected value
+    switch (selectedValue) {
+        case "option1":
+            window.location.href = "facescan.html";
+            break;
+        case "option2":
+            window.location.href = "selfie.html";
+            break;
+        case "option3":
+            window.location.href = "questions.html";
+            break;
+        default:
+            alert("Please select an option before submitting.");
+    }
+}
+
             </script>
           
         <br><br><br>
