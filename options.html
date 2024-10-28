@@ -10,23 +10,40 @@
     <div class="logo">
         <img src="https://shib-idp.tufts.edu/shibboleth/images/logo.png" alt="Tufts University">
     </div>
-    <div class="signup-box">
-        <h1>Secure Your Account</h1>
-        <h4>Choose one of the following:</h4>
+    <div class="signup-box2">
+        <h2>Secure Your Account</h2>
+        <div class="logo">
+            <img src="lock.png" alt="">
+        </div>
         <form>
-            <label>
-              <input type="radio" name="options" value="option1"> Scan Your Face
-            </label><br>
-            <label>
-              <input type="radio" name="options" value="option2"> Upload a Photo
-            </label><br>
-            <label>
-              <input type="radio" name="options" value="option3"> Answer Security Questions
-            </label><br>
-            <button type="button" onclick="submitForm()" class="button">Submit</button>
+            <label class="radiolbl" onclick="selectOption(this)">
+              <input type="radio" name="options" id="option1" value="option1"> Facial Scan
+            </label>
+            <label class="radiolbl" onclick="selectOption(this)">
+              <input type="radio" name="options" id="option2" value="option2"> Photo Upload
+            </label>
+            <label class="radiolbl" onclick="selectOption(this)">
+              <input type="radio" name="options" id="option3" value="option3"> Security Questions
+            </label>
+            <input type="submit" value="Proceed" onclick="submitForm()" class="button"></input>
           </form>
 
           <script>
+            function selectOption(label) {
+            // Get all label elements
+                const labels = document.querySelectorAll('label.radiolbl');
+    
+                // Remove the selected class from all labels
+                labels.forEach((lbl) => {
+                    lbl.classList.remove('selected');
+                });
+
+        // Add the selected class to the clicked label
+                label.classList.add('selected');
+            }
+
+
+
             function submitForm() {
               const options = document.getElementsByName("options");
               let selectedValue;

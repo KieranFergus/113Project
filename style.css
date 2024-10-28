@@ -8,6 +8,7 @@ body{
     margin: 0 auto;
     text-align: center;
     color: white;
+    padding-bottom: 10px;
 }
 
 .logo2{
@@ -26,13 +27,27 @@ body{
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
+.signup-box2{
+    width: 360px;
+    height: 520px;
+    margin: auto;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
 h1{
     text-align: center;
     padding-top: 15px;
 }
 
-h4{
+h4, h2{
     text-align: center;
+}
+
+h2{
+    text-align: center;
+    padding-top: 15px;
 }
 
 form{
@@ -84,3 +99,76 @@ div[class="opt-out"]{
 .opt-out:hover {
     transform: scale(1.01); /* Scale up the button to 110% of its size */
 }
+
+
+
+/**/
+
+
+
+
+input[type="radio"] {
+    display: none; /* Hide the default radio button */
+}
+
+/* Label styling */
+form label.radiolbl {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #344a72;
+    margin-top: 15px;
+    cursor: pointer;
+    position: relative;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* Custom circle for radio button */
+form label.radiolbl::before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #49c1a2;
+    margin-right: 12px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Styles when the label is selected */
+form label.radiolbl.selected {
+    background-color: #49c1a2; /* Fill color when selected */
+    color: white; /* Change text color to white */
+}
+
+form label.radiolbl.selected::before {
+    background-color: #49c1a2; /* Change the circle to fill color */
+    border-color: #49c1a2; /* Border color when selected */
+}
+
+/* Inner dot when selected */
+form label.radiolbl::after {
+    content: "";
+    display: inline-block;
+    border-radius: 50%;
+    background-color: white;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    left: 5px; /* Adjust position as needed */
+    top: 5px; /* Adjust position as needed */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s; /* Smooth appearance transition */
+}
+
+form label.radiolbl.selected::after {
+    opacity: 1; /* Show inner dot when selected */
+    border-color: #49c1a2;
+}
+
+/* Change border color on hover */
+/* form label.radiolbl:hover::before {
+    border-color: #35a188; 
+
+}    */
