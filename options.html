@@ -25,7 +25,7 @@
             <label class="radiolbl" onclick="selectOption(this)">
               <input type="radio" name="options" id="option3" value="option3"> Security Questions
             </label>
-            <input type="submit" value="Proceed" onclick="submitForm()" class="button"></input>
+            <input type="submit" value="Proceed" onclick="submitForm(event)" class="button"></input>
           </form>
 
           <script>
@@ -50,7 +50,7 @@
 
 function submitForm() {
     event.preventDefault();
-    
+
     const options = document.getElementsByName("options");
     let selectedValue;
 
