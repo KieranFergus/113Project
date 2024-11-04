@@ -54,7 +54,6 @@ function submitForm(event) {
     const options = document.getElementsByName("options");
     let selectedValue;
 
-    // Loop through the radio options to find the checked one
     for (const option of options) {
         if (option.checked) {
             selectedValue = option.value;
@@ -62,21 +61,40 @@ function submitForm(event) {
         }
     }
 
-    // Redirect based on the selected value
-    switch (selectedValue) {
-        case "option1":
-            window.location.href = "facescan.html";
-            break;
-        case "option2":
-            window.location.href = "selfie.html";
-            break;
-        case "option3":
-            window.location.href = "questions.html";
-            break;
-        default:
-            alert("Please select an option before submitting.");
+    if (!selectedValue) {
+        alert("Please select an option before submitting.");
+        return;
     }
+
+    // Send selected data to the server
+    fetch('/submit-selection', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ selectedOption: selectedValue })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Selection saved:', data);
+        // Redirect based on the selected value after the data is saved
+        switch (selectedValue) {
+            case "option1":
+                window.location.href = "facescan.html";
+                break;
+            case "option2":
+                window.location.href = "selfie.html";
+                break;
+            case "option3":
+                window.location.href = "questions.html";
+                break;
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
+
 
             </script>
           
