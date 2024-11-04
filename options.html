@@ -30,76 +30,73 @@
 
           <script>
          function selectOption(label) {
-    // Get all label elements
-    const labels = document.querySelectorAll('label.radiolbl');
-    
-    // Remove the selected class from all labels
-    labels.forEach((lbl) => {
-        lbl.classList.remove('selected');
-    });
+            // Get all label elements
+            const labels = document.querySelectorAll('label.radiolbl');
+            
+            // Remove the selected class from all labels
+            labels.forEach((lbl) => {
+                lbl.classList.remove('selected');
+            });
 
-    // Add the selected class to the clicked label
-    label.classList.add('selected');
+            // Add the selected class to the clicked label
+            label.classList.add('selected');
 
-    // Check the corresponding radio input
-    const radioInput = label.querySelector('input[type="radio"]');
-    if (radioInput) {
-        radioInput.checked = true; // Set the radio button to checked
-    }
-}
-
-function submitForm(event) {
-    event.preventDefault();
-
-    const options = document.getElementsByName("options");
-    let selectedValue;
-
-    for (const option of options) {
-        if (option.checked) {
-            selectedValue = option.value;
-            break;
+            // Check the corresponding radio input
+            const radioInput = label.querySelector('input[type="radio"]');
+            if (radioInput) {
+                radioInput.checked = true; // Set the radio button to checked
+            }
         }
-    }
 
-    if (!selectedValue) {
-        alert("Please select an option before submitting.");
-        return;
-    }
+        function submitForm(event) {
+            event.preventDefault();
 
-    // Send selected data to the server
-    fetch('/submit-selection', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ selectedOption: selectedValue })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to save selection');
+            const options = document.getElementsByName("options");
+            let selectedValue;
+
+            for (const option of options) {
+                if (option.checked) {
+                    selectedValue = option.value;
+                    break;
+                }
+            }
+
+            if (!selectedValue) {
+                alert("Please select an option before submitting.");
+                return;
+            }
+
+            // Replace with the actual URL of your backend endpoint
+            fetch('/api/submit-selection', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ selectedOption: selectedValue })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to save selection');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Selection saved:', data);
+                // Redirect based on the selected value after the data is saved
+                if (selectedValue === "option1") {
+                    window.location.href = "facescan.html";
+                } else if (selectedValue === "option2") {
+                    window.location.href = "selfie.html";
+                } else if (selectedValue === "option3") {
+                    window.location.href = "questions.html";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Selection saved:', data);
 
-        // Redirect based on the selected value after the data is saved
-        if (selectedValue === "option1") {
-            window.location.href = "facescan.html";
-        } else if (selectedValue === "option2") {
-            window.location.href = "selfie.html";
-        } else if (selectedValue === "option3") {
-            window.location.href = "questions.html";
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-
- 
-
-</script>
+        </script>
           
         <br><br><br>
         <div class="opt-out">
@@ -110,7 +107,5 @@ function submitForm(event) {
     <div class="logo2">
         Powered by <img src="https://shib-idp.tufts.edu/shibboleth/images/shib_logo.png" alt="Shibboleth">
     </div>
-    
-    
 </body>
 </html>
