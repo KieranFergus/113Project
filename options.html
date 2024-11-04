@@ -74,20 +74,22 @@ function submitForm(event) {
         },
         body: JSON.stringify({ selectedOption: selectedValue })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to save selection');
+        }
+        return response.json();
+    })
     .then(data => {
         console.log('Selection saved:', data);
+
         // Redirect based on the selected value after the data is saved
-        switch (selectedValue) {
-            case "option1":
-                window.location.href = "facescan.html";
-                break;
-            case "option2":
-                window.location.href = "selfie.html";
-                break;
-            case "option3":
-                window.location.href = "questions.html";
-                break;
+        if (selectedValue === "option1") {
+            window.location.href = "facescan.html";
+        } else if (selectedValue === "option2") {
+            window.location.href = "selfie.html";
+        } else if (selectedValue === "option3") {
+            window.location.href = "questions.html";
         }
     })
     .catch(error => {
@@ -95,8 +97,9 @@ function submitForm(event) {
     });
 }
 
+ 
 
-            </script>
+</script>
           
         <br><br><br>
         <div class="opt-out">
