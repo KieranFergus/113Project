@@ -33,6 +33,19 @@ app.post('/submit-selection', async (req, res) => {
     }
 });
 
+// Aggregation endpoint to get tally
+app.get('/get-tally', async (req, res) => {
+    try {
+        const results = await Selection.aggregate([
+            { $group: { _id: "$selectedOption", count: { $sum: 1 } } }
+        ]);
+        res.json(results); // Send the aggregated results back as JSON
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error retrieving tally' });
+    }
+});
+
 // Start the server
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
