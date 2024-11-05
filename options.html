@@ -31,10 +31,7 @@
           <script>
          function selectOption(label) {
             // Get all label elements
-            const labels = document.querySelectorAll('label.radiolbl');
-            
-            // Remove the selected class from all labels
-            labels.forEach((lbl) => {
+            document.querySelectorAll('.radiolbl').forEach(lbl => {
                 lbl.classList.remove('selected');
             });
 
@@ -43,9 +40,8 @@
 
             // Check the corresponding radio input
             const radioInput = label.querySelector('input[type="radio"]');
-            if (radioInput) {
-                radioInput.checked = true; // Set the radio button to checked
-            }
+            radioInput.checked = true; // Set the radio button to checked
+            
         }
 
         function submitForm(event) {
